@@ -181,6 +181,52 @@ within that block. Segments are matched by their `alias` or `type`, so you can a
 For more advanced use cases, you can also specify the index of the `block` or `segment` you want to override. This allows you to override `blocks` or `segments` at
 specific positions in the configuration. Be aware that the index is **1-based**, so the first `block` or `segment` has an index of `1`.
 
+## CLI Configuration
+
+Oh My Posh can be configured directly through the command-line interface, providing an alternative to manually editing configuration files.
+The `oh-my-posh config dsc` command enables programmatic configuration management and supports integration with automation tools.
+
+### Direct CLI Usage
+
+You can manage configurations using the `oh-my-posh config dsc` command:
+
+```bash
+# Get current configuration state
+oh-my-posh config dsc get
+
+# Export configuration (same as get)
+oh-my-posh config dsc export
+
+# Apply a configuration
+oh-my-posh config dsc set --state '{"states":[{"source":"~/mytheme.omp.json","format":"json"}]}'
+
+# Get configuration schema
+oh-my-posh config dsc schema
+```
+
+The `get` and `export` commands retrieve the current configuration state, including all configurations that have been set through DSC.
+The `set` command applies a new configuration state, creating or updating configuration files as specified.
+
+### Automation and Orchestration
+
+Oh My Posh supports integration with orchestration tools for enterprise and automated deployments:
+
+- **WinGet Configuration**: Install and configure Oh My Posh in a single declarative configuration file
+- **Microsoft DSC**: Use Desired State Configuration v3 for cross-platform configuration management
+- **Custom Automation**: Use the CLI commands in your own scripts and deployment pipelines
+
+For detailed information about using orchestration tools with Oh My Posh, see the
+[Desired State Configuration][dsc-config] documentation.
+
+### Benefits of CLI Configuration
+
+Using the CLI for configuration management provides several advantages:
+
+- **Automation**: Configure Oh My Posh as part of automated system setup and provisioning
+- **Version Control**: Store configuration state as code in your version control system
+- **Consistency**: Ensure identical configurations across multiple systems
+- **Integration**: Combine Oh My Posh configuration with other tools and services
+
 ### JSON Schema Validation
 
 As mentioned above, Oh My Posh configurations can utilize JSON Schema to validate their contents. Configurations should include a link to
@@ -237,3 +283,4 @@ Converters won't catch this change, so you will need to adjust manually.
 [iterm2-si]: https://iterm2.com/documentation-shell-integration.html
 [Upgrade]: /docs/installation/upgrade
 [extend]: /docs/configuration/general#extends
+[dsc-config]: /docs/configuration/dsc
